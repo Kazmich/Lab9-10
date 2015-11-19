@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:c="http://java.sun.com/jsp/jstl/core"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:clarity="http://clarity/facelets/debug"
+    xmlns:h="http://java.sun.com/jsf/html">
+
+  <h:head>  
+    <title>IGNORED</title> 
+  </h:head>
+  
+  <h:body>        
+    <ui:composition>
+      <h:outputScript library="javax.faces" name="jsf.js" target="body"/>
+
+      <script type="text/javascript">
+	      function checkForm(form) {
+	        var name = form['name'].value;
+	        var pwd = form['password'].value;
+	 
+	        if (name == "" || pwd == "") {
+	          alert("Please enter name and password.");
+	          return false;
+	        }
+	        return true;
+	       }
+      </script>
+       
+	    <h:form id="form" prependId="false" onsubmit="return checkForm(this)">
+	      <f:event type="postValidate" listener="#{user.validate}"/>
+	      
+	      <div id="prompt">
+	        #{msgs.loginPrompt} 
+	      </div>
+	      
+	      <h:panelGrid columns="2">
+	        #{msgs.namePrompt}
+	        <h:panelGroup>
+	          <h:inputText id="name" value="#{user.name}"
+              valueChangeListener="#{user.validateName}"
+                                                         
+              onblur="jsf.ajax.request(this, event, 
+                {execute: '@this', render: 'nameError'})"/>
+                                
+	          <h:outputText id="nameError" value="#{user.nameError}" style="color: red"/>
+	        </h:panelGroup>     
+		   
+	        #{msgs.passwordPrompt} 
+	        <h:inputSecret id="password" value="#{user.password}" size="6"/>
+	      </h:panelGrid>
+	
+	      <p>
+	        <h:commandButton id="loginButton"
+	          value="#{msgs.loginButtonText}" 
+	          action="places"/>
+	      </p>
+	    </h:form>
+	    
+	    <div class="error">
+	      <h:messages layout="table"/>
+	    </div>	    
+	    
+	  </ui:composition>
+  </h:body>
+</html>

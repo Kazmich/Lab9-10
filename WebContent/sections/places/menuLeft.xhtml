@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:cc="http://java.sun.com/jsf/composite/components">
+
+  <h:head>  
+    <title>IGNORED</title>
+  </h:head>
+  
+  <h:body>        
+    <ui:composition>
+      <h:outputScript library="javax.faces" name="jsf.js" target="head"/>
+      
+      <div style="font-style: italic; font-family: Palatino; margin-bottom: 15px;margin-left: 5%;"> 
+        <div style="text-align: center; width=100%;margin-bottom: 12px;margin-top: 12px;font-size:1.15em;">
+          #{msgs.findAPlace}
+        </div>    
+      
+	      <h:form prependId="false">
+	        <h:panelGrid columns="2">
+	          #{msgs.streetAddress} 
+	          
+	          <h:inputText value="#{place.streetAddress}" size="15"/>
+	          
+	          #{msgs.city}  <h:inputText value="#{place.city}"  size="10"/>
+	          #{msgs.state} <h:inputText value="#{place.state}" size="2"/>
+	          #{msgs.zip}   <h:inputText value="#{place.zip}"   size="5"/>
+	          
+	          <h:commandButton value="#{msgs.goButtonText}" 
+	            style="font-family:Palatino;font-style:italic"
+	            action="#{place.fetch}"/>	            
+	        </h:panelGrid>
+	        
+          <h:commandButton value="#{msgs.logoutButtonText}" 
+            style="font-family:Palatino;font-style:italic"
+            action="#{places.logout}"/>
+	        
+	      </h:form>
+      </div>
+    </ui:composition>
+  </h:body>
+</html> 

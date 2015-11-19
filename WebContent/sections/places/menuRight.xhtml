@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:cc="http://java.sun.com/jsf/composite/components">
+
+  <h:head>  
+    <title>IGNORED</title>
+  </h:head>
+  
+  <h:body>        
+    <ui:composition>
+	    <h:outputLink value="../pages/showSource.faces">
+	    
+	      <h:graphicImage value="#{resource['images:disk-icon.png']}"
+	                 styleClass="icon"/>
+	                 
+	      <f:param name="file" value="/pages/places.xhtml"/>
+	      <f:param name="returnUrl" value="../pages/places.faces"/>
+	      
+	    </h:outputLink>    
+    </ui:composition>
+  </h:body> 
+</html>

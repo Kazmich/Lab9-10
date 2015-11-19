@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:clarity="http://clarity/facelets/debug"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:cc="http://java.sun.com/jsf/composite/components">
+    
+  <h:head>  
+    <title>IGNORED</title>
+  </h:head>
+  
+  <h:body>        
+    <ui:composition>
+      <h:form id="form"> 
+        <ui:repeat value="#{places.placesList}" var="place">
+          <div class="placeHeading">
+            <h:panelGrid columns="1">
+
+              <h:panelGroup>
+                <div style="padding-left: 5px;">
+                  <i><h:outputText value="#{place.streetAddress}"/></i> 
+                  <h:outputText value=" #{place.city}"/>
+                  <h:outputText value="#{place.state}"/>
+                  <hr/>
+                </div>
+              </h:panelGroup>
+
+              <h:panelGrid columns="2">
+                <div style="padding-right: 10px;margin-bottom: 10px;font-size:14px">
+                  #{msgs.zoomPrompt}
+                </div>
+
+                <h:selectOneMenu onchange="submit()"
+                     value="#{place.zoomIndex}"
+                     valueChangeListener="#{place.zoomChanged}"
+                     style="font-size:13px;font-family:Palatino">
+                  <f:selectItems value="#{places.zoomLevelItems}"/>
+                </h:selectOneMenu>
+              </h:panelGrid>
+
+              <h:graphicImage url="#{place.mapUrl}" style="border: thin solid gray"/>
+
+            </h:panelGrid>
+
+            <div class="placeMap">
+              <div style="margin-top: 10px;width:250px;">
+                <h:outputText style="font-size: 12px;"
+                  value="#{place.weather}"
+                  escape="false"/>
+              </div>
+            </div>
+          </div>
+        </ui:repeat>
+      </h:form>
+    </ui:composition>
+  </h:body>
+</html>
